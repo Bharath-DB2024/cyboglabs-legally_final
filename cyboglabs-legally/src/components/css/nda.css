@@ -223,3 +223,25 @@ body, html, #root {
   color: black;
 
 }
+.sub{
+  width: 95%;
+
+
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+.sing{
+
+  height: 60px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+ 
+}
+.sing img{
+  width: 90px;
+  height: 40px;
+  object-fit: contain;
+
+}

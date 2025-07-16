@@ -164,10 +164,14 @@
 // }
 
 // export default App;
+
+
 import React, { useEffect, useState } from "react";
 import { BrowserRouter as Router, Routes, Route, useNavigate, useLocation } from "react-router-dom";
 import "./App.css";
 import Online from "./components/pages/online.jsx";
+import Info from "./components/pages/info.jsx";
+import Help from "./components/pages/help.jsx";
 
 function App() {
   return (
@@ -181,6 +185,11 @@ function Main() {
   const [isDark, setIsDark] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
+
+
+  const handleBack = () => {
+    navigate("/"); // Go to the previous page
+  };
 
   const currentPath = location.pathname;
 
@@ -200,10 +209,10 @@ function Main() {
   return (
     <div className={`app ${isDark ? "dark" : "light"}`}>
       <nav className="navbar">
-        <div className="nav-left">CYBOGLABS.LEGAL</div>
+        <div className="nav-left" onClick={handleBack}>CYBOGLABS.LEGAL</div>
         <div className="nav-right">
-          <a href="#info">Info</a>
-          <a href="#help">Help</a>
+          <a href="/info">Info</a>
+          <a href="/help">Help</a>
           <button className="toggle-button" onClick={() => setIsDark(!isDark)}>
             {isDark ? "Light" : "Dark"}
           </button>
@@ -213,6 +222,8 @@ function Main() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/online" element={<Online />} />
+        <Route path="/info" element={<Info />} />
+        <Route path="/help" element={<Help />} />
       </Routes>
 
       <footer className="footer">
