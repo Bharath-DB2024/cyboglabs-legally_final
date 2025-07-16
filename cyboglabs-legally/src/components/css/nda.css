@@ -41,7 +41,14 @@ body, html, #root {
 }
 
 .nda-logo {
-  height: 60px;
+  height: 50px;
+
+}
+.ht{
+  font-size: 14px;
+}
+.ht1{
+  font-size: 14px;
 }
 
 .logo-sub {
@@ -55,7 +62,16 @@ body, html, #root {
   height: 70%;
   overflow-y: auto;
 }
-
+.het{
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+}
+.het img{
+  width: 16px;
+}
 .nda-line {
   padding: 6px 12px;
   color: black;
@@ -193,6 +209,16 @@ body, html, #root {
   gap: 8px;
   cursor: pointer;
 }
+.leftimg , .rightimg{
+  height: 40px;
+    transition: all 0.3s ease-in-out;
+}
+.leftimg:hover{
+   scale: 1.1;
+}
+.rightimg:hover{
+   scale: 1.1;
+}
 .languge{
   width: 30%;
   height: 50px;
@@ -244,4 +270,48 @@ body, html, #root {
   height: 40px;
   object-fit: contain;
 
+}
+.signp{
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+
+
+}
+
+.text{
+  width: 80%;
+
+}
+.la{
+  width: 50%;
+}
+.info-display {
+
+  font-family: Arial, sans-serif;
+  font-size: 12px;
+  line-height: 1.8;
+  margin: 20px auto;
+  padding: 1px;
+
+}
+
+.info-row {
+  display: flex;
+  gap: 8px;
+}
+
+.label {
+
+  font-weight: bold;
+}
+
+.colon {
+  width: 10px;
+}
+
+.value {
+  flex: 1;
 }

@@ -172,6 +172,8 @@ import "./App.css";
 import Online from "./components/pages/online.jsx";
 import Info from "./components/pages/info.jsx";
 import Help from "./components/pages/help.jsx";
+import Offline  from "./components/pages/offline.jsx";
+import UploadDownload from "./components/pages/upload.jsx";
 
 function App() {
   return (
@@ -222,8 +224,10 @@ function Main() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/online" element={<Online />} />
+         <Route path="/offline" element={<Offline/>} />
         <Route path="/info" element={<Info />} />
         <Route path="/help" element={<Help />} />
+        <Route path="/upload" element={<UploadDownload/>}/>
       </Routes>
 
       <footer className="footer">
@@ -243,7 +247,11 @@ function Home() {
         <img src="https://img.icons8.com/ios-glyphs/64/communication.png" alt="Document" />
         <h2>Online NDA</h2>
       </div>
-      <Card title="Offline NDA" />
+      <div className="card" style={{ opacity: 0.8 }} onClick={() => navigate("/offline")}>
+        <img src="https://img.icons8.com/ios-glyphs/64/communication.png" alt="Document" />
+        <h2>Offline NDA</h2>
+      </div>
+
       <Card title="Corporate" />
       <Card title="Independent Contractor Agreement" />
       <Card title="Service Contract Agreement" />

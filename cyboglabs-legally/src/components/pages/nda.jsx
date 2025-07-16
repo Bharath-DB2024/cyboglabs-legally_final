@@ -1102,6 +1102,10 @@ import axios from "axios";
 import r from "../../assets/1.svg";
 import l from "../../assets/2.svg";
 import a from "../../assets/a.svg";
+import p from "../../assets/p.svg";
+import w from "../../assets/w.svg";
+import m from "../../assets/m.svg";
+import logo from "../../assets/sign.svg";
 import "../css/nda.css";
 import sign from "../../assets/sign.jpg"
 
@@ -1132,7 +1136,7 @@ const RTL_LANGUAGES = ["ar-SA", "ur-IN"]; // Right-to-left languages
 const NDAStyledLayout = forwardRef(({ lang = "en-US", formData, setFormData, setShowModal, handleSubmit }, ref) => {
   const ndaTranslations = {
     "en-US": [
-      `This Non-Disclosure Agreement (“Agreement”) is entered into on ${formData.fromDate} (“Effective Date”), by and between Cyboglabs Private Limited, a company, having its principal office at NO.11/20, PAMMAL ANNA NAGAR, 9th CROSS STREET, CHENNAI - 600075, TAMIL NADU, INDIA, hereinafter referred to as “Company” and ${formData.company}, having its principal place of business or residence at  ${formData.companyAddress} hereinafter referred “Receiving Party."`,
+      `This Non-Disclosure Agreement (“Agreement”) is entered into on ${formData.fromDate ? formData.fromDate:"_______________"} (“Effective Date”), by and between Cyboglabs Private Limited, a company, having its principal office at NO.11/20, PAMMAL ANNA NAGAR, 9th CROSS STREET, CHENNAI - 600075, TAMIL NADU, INDIA, hereinafter referred to as “Company” and ${formData.company ? formData.company:"_______________"} , having its principal place of business or residence at  ${formData.companyAddress?formData.companyAddress:"_____________________________"} hereinafter referred “Receiving Party."`,
       "WHEREAS, the Company is engaged in the business of research and development, engineering innovations, technological product development, scientific investigations, problem-solving methodologies, and allied activities",
       "AND WHEREAS, the Receiving Party may, in the course of its engagement with the Company as an employee, consultant, vendor, service provider, intern, collaborator, or in any other capacity, gain access to certain non-public, confidential, and proprietary information;",
       "NOW, THEREFORE, in consideration of the mutual promises and covenants herein, the Parties agree as follows:",
@@ -1342,19 +1346,21 @@ const NDAStyledLayout = forwardRef(({ lang = "en-US", formData, setFormData, set
       <div className="pagination-controls">
         <div
           onClick={handlePrevPage}
+          style={{opacity:currentPage === 0?0:1}}
           disabled={currentPage === 0}
           className="page-button"
           aria-label="Previous page"
         >
-          <img src={r} style={{ height: "40px" }} alt="Previous page" />
+          <img src={r}  className="leftimg" alt="Previous page" />
         </div>
         <div
           onClick={handleNextPage}
-          disabled={currentPage === totalPages - 1}
+           style={{opacity:currentPage === totalPages - 1?0:1}}
+          // disabled={currentPage === totalPages - 1}
           className="page-button next-btn1"
           aria-label="Next page"
         >
-          <img src={l} style={{ height: "40px" }} alt="Next page" />
+          <img src={l}   className="leftimg" alt="Next page" />
         </div>
       </div>
       <div style={{ display: "flex", justifyContent: "flex-end", alignItems: "center", marginBottom: "10px" }}>
@@ -1394,15 +1400,26 @@ const NDAStyledLayout = forwardRef(({ lang = "en-US", formData, setFormData, set
       </div>
       <div className="nda-header">
         <div className="nda-left">
-          <p>
-            <strong>www.cyboglabs.com</strong>
+          <div className="het">
+            <img src={w} alt="web"/>
+                 <p className="ht">
+                 www.cyboglabs.com
           </p>
-          <p>support@cyboglabs.com</p>
-          <p>📞 +91 -75501 79001, 90803 11530</p>
+          </div>
+           <div className="het">
+            <img src={m} alt="web"/>
+         <p className="ht1">support@cyboglabs.com</p>
+          </div>
+     
+                <div className="het">
+            <img src={p} alt="web"/>
+  <p className="ht1" >+91 -75501 79001, 90803 11530</p>
+          </div>
+        
         </div>
         <div className="nda-right">
-          <img src="/cybog-logo.png" alt="Cybog Labs Logo" className="nda-logo" />
-          <p className="logo-sub">TECHNOLOGY & LIFE</p>
+          <img src={logo} alt="Cybog Labs Logo" className="nda-logo" />
+       
         </div>
       </div>
       <div className="language-selector">
@@ -1426,14 +1443,27 @@ const NDAStyledLayout = forwardRef(({ lang = "en-US", formData, setFormData, set
               <div className="sing">  <p>Signature:</p>
               <img src={sign} alt="sign" />
               </div>
-                <p>Date:</p>
+               <div className="signp">
+                <p>Date</p>   <p>:{formData.fromDate ? formData.fromDate:"_______________"}</p>
+                </div>
+            
               </div>
               <div className="sign">
                 <h5>RECEIVING PARTY</h5>
-                <p>Name: {formData.fullName}</p>
-                <p>Designation: {formData.role}</p>
-                <p>Signature:</p>
-                <p>Date: {formData.fromDate}</p>
+                <div className="signp">
+
+                <p className="la">Name </p>    <p className="text">:{formData.fullName ? formData.fullName:"_______________"}</p>
+                </div>
+                 <div className="signp">
+                <p>Designation</p><p>:{formData.role ? formData.role:"_______________"}</p>
+                </div>
+                     <div className="signp">
+                <p>Signature</p><p>:</p>
+                </div>
+          <div className="signp">
+                <p>Date</p> <p> :{formData.fromDate ? formData.fromDate:"_______________"}</p>
+                </div>
+              
               </div>
             </div>
             <div className="sub">

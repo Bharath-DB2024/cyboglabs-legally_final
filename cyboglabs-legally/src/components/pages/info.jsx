@@ -16,7 +16,7 @@ function InfoPage() {
         />
         <h1>Info Page</h1>
         <p>This section will be updated soon with more details and features.</p>
-        <button className="info-back-button" onClick={() => navigate(-1)}>
+        <button className="info-back-button" onClick={() => navigate("/")}>
           ← Back
         </button>
       </div>

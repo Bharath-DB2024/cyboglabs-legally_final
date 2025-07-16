@@ -16,7 +16,7 @@ function HelpPage() {
         />
         <h1>Help Page</h1>
         <p>Help content will be updated soon. Stay tuned for guidance and support.</p>
-        <button className="help-back-button" onClick={() => navigate(-1)}>
+        <button className="help-back-button" onClick={() => navigate("/")}>
           ← Back
         </button>
       </div>

@@ -405,11 +405,17 @@
 // }
 
 // export default Online;
+
+
+
+
+
 import React, { useState, useRef, useEffect } from "react";
 import axios from "axios";
 import "../css/online.css";
 import NDAStyledLayout from "./nda";
 import a from "../../assets/a.svg";
+import Downlaod from "../../assets/a.svg";
 
 function Online() {
   const [formData, setFormData] = useState({
@@ -434,19 +440,7 @@ function Online() {
   const ndaRef = useRef();
 
   // Supported languages
-  const supportedLanguages = [
-    { code: "en-US", name: "English (US)" },
-    { code: "en-GB", name: "English (UK)" },
-    { code: "hi-IN", name: "Hindi" },
-    { code: "fr-FR", name: "French" },
-    { code: "ml-IN", name: "Malayalam" },
-    { code: "ta-IN", name: "Tamil" },
-    { code: "es-ES", name: "Spanish" },
-    { code: "de-DE", name: "German" },
-    { code: "ja-JP", name: "Japanese" },
-    { code: "zh-CN", name: "Chinese (Mandarin)" },
-    { code: "ru-RU", name: "Russian" },
-  ];
+ 
 
   // Load Leegality SDK dynamically
   useEffect(() => {
@@ -738,7 +732,7 @@ function Online() {
               </button>
               {/* <button type="submit" className="submit-btn">Submit</button> */}
               <button type="button" className="submit-btn" onClick={handlePreviewClick}>
-                Preview
+                Sumbit
               </button>
             </div>
           </div>

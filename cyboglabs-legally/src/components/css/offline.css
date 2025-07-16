@@ -1,3 +1,75 @@
+/* 
+.help-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80vh;
+    background-color: #fcfcfc;
+  }
+  
+  .help-card {
+    background-color: #ffffff;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  }
+  
+  .help-icon {
+    width: 80px;
+    margin-bottom: 20px;
+  }
+  
+  .help-card h1 {
+    font-size: 28px;
+    margin-bottom: 10px;
+  }
+  
+  .help-card p {
+    font-size: 16px;
+    color: #555;
+  }
+  
+  .help-back-button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #8e44ad;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+    cursor: pointer;
+  }
+  
+  .help-back-button:hover {
+    background-color: #6d2c91;
+  }
+    
+
+.help-upload-button {
+  padding: 10px 20px;
+  margin: 10px;
+  background-color: #2d89ef;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.help-upload-button:hover {
+  background-color: #1b5ec2;
+}
+.loading-animation {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.help-upload-button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+} */
+
 /* online.css */
 
   .online-container{
@@ -33,11 +105,12 @@
   }
   
   .preview-btn {
+    height: 90%;
     background: #007BFF;
     color: white;
     padding: 0.5rem 1rem;
     border: none;
-    border-radius: 4px;
+    border-radius: 8px;
     cursor: pointer;
   }
   
@@ -395,5 +468,30 @@ font-weight: 800;
 .in{
   height: 50px;
 
+}
+.document{
+    width:100%;
+    height: 50px;
 
+    display: flex;
+    
+    flex-direction: column;
+
+
+    justify-content: center;
+
+    font-size: 14px;
+
+}
+.upload{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+}
+.uptext{
+    color: black;
+    font-size: 15px;
 }
