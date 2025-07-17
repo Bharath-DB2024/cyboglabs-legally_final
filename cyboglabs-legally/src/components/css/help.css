@@ -2,18 +2,66 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 83vh;
+    flex-direction: column;
+    height: 82vh;
+    width: 100%;
     background-color: #fcfcfc;
+    overflow-x: hidden;
+    margin: 0;
   }
   
-  .help-card {
-    background-color: #ffffff;
-    padding: 40px;
-    border-radius: 12px;
-    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
-    text-align: center;
-  }
+  .headh{
+    margin-top: 10px;
+    width: 50%;
+    height: 8%;
+    display: flex;
   
+    
+  }
+  .headh text{
+    font-size: 24px;
+    font-weight: 600;
+    color:black;
+
+  }
+.help-card {
+  width: 50%;
+ 
+  height:90%; /* Adjust as needed */
+
+  padding: 10px 80px;
+  background-color: #fdfdfd;
+  border-radius: 12px;
+
+  overflow-y: auto;
+  scroll-behavior: smooth;
+  font-family: 'Segoe UI', sans-serif;
+  line-height: 1.6;
+  color: #333;
+
+ 
+}
+
+/* Optional: add a scroll bar style */
+.help-card::-webkit-scrollbar {
+  width: 8px;
+}
+
+.help-card::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 4px;
+}
+
+  .faq-item{
+    width: 100%;
+margin-top: 30px;
+    gap: 10px;
+    display: flex;
+    flex-direction: column;
+
+  }
+
+
   .help-icon {
     width: 80px;
     margin-bottom: 20px;

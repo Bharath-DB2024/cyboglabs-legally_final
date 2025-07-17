@@ -5,10 +5,12 @@ import React, { useState, useRef, useEffect } from "react";
 import axios from "axios";
 import "../css/offline.css";
 import NDAStyledLayout from "./nda";
-import a from "../../assets/a.svg";
+import download from "../../assets/d.svg";
 import Lottie from "lottie-react";
 import Downlaod from "../../assets/Download.json";
+
 function Offline() {
+    const today = new Date().toISOString().split("T")[0];
     const [formData, setFormData] = useState({
         fullName: "",
         company: "",
@@ -17,8 +19,8 @@ function Offline() {
         phone: "",
         contractDescription: "",
         email: "",
-        fromDate: "",
-        fromDate2: "",
+     fromDate: today,     // Automatically set to today
+      fromDate2: today,    // Automatically set to today
         role: "",
         status: "Completed",
     });
@@ -31,7 +33,7 @@ function Offline() {
     const ndaRef = useRef();
     const fileInputRef = useRef(null);
     const [selectedFileName, setSelectedFileName] = useState("");
-      const [isDownloading, setIsDownloading] = useState(false);
+    const [isDownloading, setIsDownloading] = useState(false);
 
     // Supported languages
 
@@ -66,10 +68,10 @@ function Offline() {
         if (!/^\d{10}$/.test(formData.phone.trim())) newErrors.phone = "Phone Number must be 10 digits";
         if (!formData.contractDescription.trim()) newErrors.contractDescription = "Contract Description is required";
         if (!formData.email.trim()) newErrors.email = "Email is required";
-        if (!formData.fromDate.trim()) newErrors.fromDate = "Start Date is required";
-        if (!formData.fromDate2.trim()) newErrors.fromDate2 = "End Date is required";
+        // if (!formData.fromDate.trim()) newErrors.fromDate = "Start Date is required";
+        // if (!formData.fromDate2.trim()) newErrors.fromDate2 = "End Date is required";
         if (!formData.role.trim()) newErrors.role = "Role is required";
-         if (!selectedFileName) newErrors.selectedFileName = "Document file is required"; // ✅ File check
+        if (!selectedFileName) newErrors.selectedFileName = "Document file is required"; // ✅ File check
         return newErrors;
     };
 
@@ -132,42 +134,43 @@ function Offline() {
         setIsLoading(false);
         ndaRef.current?.stopReading();
     };
-const handleDownload = async () => {
-    setIsDownloading(true);
+    const handleDownload = async () => {
+        setIsDownloading(true);
 
-    try {
-      const response = await fetch("http://localhost:3000/api/download");
-      const blob = await response.blob();
-
-      const url = window.URL.createObjectURL(new Blob([blob]));
-      const link = document.createElement("a");
-      link.href = url;
-      link.setAttribute("download", "document.pdf");
-      document.body.appendChild(link);
-      link.click();
-      link.remove();
-    } catch (err) {
-      console.error("Download error:", err);
-    } finally {
-      setIsDownloading(false);
-    }
-  };
+        try {
+            const response = await fetch("http://localhost:3000/api/download");
+            const blob = await response.blob();
+             console.log(blob);
+ 
+            const url = window.URL.createObjectURL(new Blob([blob]));
+            const link = document.createElement("a");
+            link.href = url;
+            link.setAttribute("download", "document.pdf");
+            document.body.appendChild(link);
+            link.click();
+            link.remove();
+        } catch (err) {
+            console.error("Download error:", err);
+        } finally {
+            setIsDownloading(false);
+        }
+    };
 
     return (
         <div className="online-container">
             <main className="main-content">
                 <div className="main-header">
                     <h1>Offline NDA</h1>
-                        <button onClick={handleDownload} className="download-btn">
-      {isDownloading ? (
-        <Lottie animationData={downloadAnimation} loop={true} style={{ width: 40, height: 40 }} />
-      ) : (
-        <>
-          <img src="/download-icon.svg" alt="download" style={{ width: 20, height: 20, marginRight: 8 }} />
-          Download Document
-        </>
-      )}
-    </button>
+                    <div onClick={handleDownload} className="download-btn">
+                        {isDownloading ? (
+                            <Lottie animationData={Downlaod} loop={true} className="lottie" />
+                        ) : (
+                            < div className="download-icon" >
+                                <img src={download} alt="download"  />
+                                <text className="download"> Download </text>
+                            </div>
+                        )}
+                    </div>
 
                 </div>
 
@@ -181,7 +184,7 @@ const handleDownload = async () => {
                     <div className="in">
                         <input
                             name="fullName"
-                            placeholder="Full Name"
+                            placeholder="Enter Full Name"
                             value={formData.fullName}
                             onChange={handleChange}
                             style={{ borderColor: errors.fullName ? "red" : "#ccc" }}
@@ -191,18 +194,18 @@ const handleDownload = async () => {
                     <div className="in">
                         <input
                             name="company"
-                            placeholder="Company"
+                            placeholder="Enter Company Name"
                             value={formData.company}
                             onChange={handleChange}
                             style={{ borderColor: errors.company ? "red" : "#ccc" }}
                         />
                         {errors.company && <p className="error-message">{errors.company}</p>}
                     </div>
-             
+
                     <div className="in">
                         <input
                             name="companyAddress"
-                            placeholder="Company Address"
+                            placeholder="Enter Company Address"
                             value={formData.companyAddress}
                             onChange={handleChange}
                             style={{ borderColor: errors.companyAddress ? "red" : "#ccc" }}
@@ -212,7 +215,7 @@ const handleDownload = async () => {
                     <div className="in">
                         <input
                             name="phone"
-                            placeholder="Phone"
+                            placeholder="Enter Phone Number"
                             value={formData.phone}
                             onChange={handleChange}
                             style={{ borderColor: errors.phone ? "red" : "#ccc" }}
@@ -232,7 +235,7 @@ const handleDownload = async () => {
                     <div className="in">
                         <input
                             name="email"
-                            placeholder="Email ID"
+                            placeholder="Enter Email ID"
                             value={formData.email}
                             onChange={handleChange}
                             style={{ borderColor: errors.email ? "red" : "#ccc" }}
@@ -242,7 +245,7 @@ const handleDownload = async () => {
                     <div className="in">
                         <input
                             name="role"
-                            placeholder="Role"
+                            placeholder="Enter Role "
                             value={formData.role}
                             onChange={handleChange}
                             style={{ borderColor: errors.role ? "red" : "#ccc" }}
@@ -251,52 +254,39 @@ const handleDownload = async () => {
                     </div>
                     <div className="in">
                         <div className="upload">
-                        <button className="preview-btn" onClick={() => fileInputRef.current.click()} style={{opacity:selectedFileName?0.4:1}}>
-                           Upload Document
-                        </button>
-                        <text className="uptext">{selectedFileName} </text>
+                            <button className="preview-btn" onClick={() => fileInputRef.current.click()} style={{ opacity: selectedFileName ? 0.4 : 1 }}>
+                                Upload Document
+                            </button>
+                            <text className="uptext">{selectedFileName} </text>
                         </div>
 
-                      {errors.selectedFileName && <p className="error-message">{errors.selectedFileName}</p>}
+                        {errors.selectedFileName && <p className="error-message">{errors.selectedFileName}</p>}
                     </div>
                     <div className="date">
                         <div className="in1">
-                            <input
-                                name="fromDate"
-                                type="date"
-                                value={formData.fromDate}
-                                onChange={handleChange}
-                                style={{ borderColor: errors.fromDate ? "red" : "#ccc" }}
-                            />
-                            {errors.fromDate && <p className="error-message">{errors.fromDate}</p>}
+                        
                         </div>
                         <input
                             type="file"
                             ref={fileInputRef}
                             accept="application/pdf"
                             style={{ display: "none" }}
-                            
+
                             onChange={(e) => {
                                 const file = e.target.files[0];
-                              
+
                                 if (file) {
                                     console.log("PDF selected:", file);
                                     setSelectedFileName(file.name)
                                     const pdfUrl = URL.createObjectURL(file);
                                     window.open(pdfUrl, "_blank"); // or use a modal preview if needed
-                                       setErrors((prevErrors) => ({ ...prevErrors, selectedFileName: "" }));
+                                    setErrors((prevErrors) => ({ ...prevErrors, selectedFileName: "" }));
                                 }
                             }}
                         />
                         <div className="in1">
-                            <input
-                                name="fromDate2"
-                                type="date"
-                                value={formData.fromDate2}
-                                onChange={handleChange}
-                                style={{ borderColor: errors.fromDate2 ? "red" : "#ccc" }}
-                            />
-                            {errors.fromDate2 && <p className="error-message">{errors.fromDate2}</p>}
+                           
+                          
                         </div>
                     </div>
 

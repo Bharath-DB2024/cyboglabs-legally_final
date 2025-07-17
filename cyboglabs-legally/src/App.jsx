@@ -174,6 +174,11 @@ import Info from "./components/pages/info.jsx";
 import Help from "./components/pages/help.jsx";
 import Offline  from "./components/pages/offline.jsx";
 import UploadDownload from "./components/pages/upload.jsx";
+import d from "./assets/dark.svg";
+import l from "./assets/light.svg";
+import off from "./assets/OFFLINE.svg";
+import on from "./assets/ONLINE.svg";
+import help from "./assets/help.svg";
 
 function App() {
   return (
@@ -213,11 +218,11 @@ function Main() {
       <nav className="navbar">
         <div className="nav-left" onClick={handleBack}>CYBOGLABS.LEGAL</div>
         <div className="nav-right">
-          <a href="/info">Info</a>
-          <a href="/help">Help</a>
-          <button className="toggle-button" onClick={() => setIsDark(!isDark)}>
-            {isDark ? "Light" : "Dark"}
-          </button>
+          {/* <a href="/info">Info</a> */}
+          <a href="/help"><img src={help} alt="home" className="helpi"/></a>
+          <dev className="toggle-button" onClick={() => setIsDark(!isDark)}>
+            {isDark ? <img src={l} alt="light"   className="dark1"/>: <img src={d} alt="Dark" className="dark1" />}
+          </dev >
         </div>
       </nav>
 
@@ -225,7 +230,7 @@ function Main() {
         <Route path="/" element={<Home />} />
         <Route path="/online" element={<Online />} />
          <Route path="/offline" element={<Offline/>} />
-        <Route path="/info" element={<Info />} />
+        {/* <Route path="/info" element={<Info />} /> */}
         <Route path="/help" element={<Help />} />
         <Route path="/upload" element={<UploadDownload/>}/>
       </Routes>
@@ -244,11 +249,11 @@ function Home() {
     <main className="container">
         <div className="contain">
       <div className="card" style={{ opacity: 0.8 }} onClick={() => navigate("/online")}>
-        <img src="https://img.icons8.com/ios-glyphs/64/communication.png" alt="Document" />
+        <img src={on} className="homeicon"  alt="Document" />
         <h2>Online NDA</h2>
       </div>
       <div className="card" style={{ opacity: 0.8 }} onClick={() => navigate("/offline")}>
-        <img src="https://img.icons8.com/ios-glyphs/64/communication.png" alt="Document" />
+        <img src={off}  className="homeicon" alt="Document" />
         <h2>Offline NDA</h2>
       </div>
 
@@ -263,8 +268,8 @@ function Home() {
 
 function Card({ title }) {
   return (
-    <div className="card" style={{ opacity: 0.5 }}>
-      <img src="https://img.icons8.com/ios-glyphs/64/communication.png" alt="Document" />
+    <div className="card" style={{ opacity: 0.3 }}>
+      <img src="https://img.icons8.com/ios-glyphs/64/communication.png"  className="homeicon" alt="Document" />
       <h2>{title}</h2>
     </div>
   );
