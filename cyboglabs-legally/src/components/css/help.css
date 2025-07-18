@@ -1,45 +1,39 @@
 .help-page {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    height: 82vh;
-    width: 100%;
-    background-color: #fcfcfc;
-    overflow-x: hidden;
-    margin: 0;
-  }
-  
-  .headh{
-    margin-top: 10px;
-    width: 50%;
-    height: 8%;
-    display: flex;
-  
-    
-  }
-  .headh text{
-    font-size: 24px;
-    font-weight: 600;
-    color:black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 82vh;
+  width: 100%;
+  background-color: var(--bg-color); /* Use background color variable */
+  overflow-x: hidden;
+  margin: 0;
+}
 
-  }
+.headh {
+  margin-top: 10px;
+  width: 50%;
+  height: 8%;
+  display: flex;
+}
+
+.headh text {
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--text-color); /* Use text color variable */
+}
+
 .help-card {
   width: 50%;
- 
-  height:90%; /* Adjust as needed */
-
+  height: 90%; /* Adjust as needed */
   padding: 10px 80px;
-  background-color: #fdfdfd;
+  background-color: var(--card-bg); /* Use card background variable */
   border-radius: 12px;
-
   overflow-y: auto;
   scroll-behavior: smooth;
-  font-family: 'Segoe UI', sans-serif;
+  font-family: 'Inter', 'Segoe UI', Arial, sans-serif; /* Updated to include Inter */
   line-height: 1.6;
-  color: #333;
-
- 
+  color: var(--text-color); /* Use text color variable */
 }
 
 /* Optional: add a scroll bar style */
@@ -48,47 +42,46 @@
 }
 
 .help-card::-webkit-scrollbar-thumb {
-  background: #ccc;
+  background: var(--card-bg); /* Use card background for scrollbar thumb */
   border-radius: 4px;
 }
 
-  .faq-item{
-    width: 100%;
-margin-top: 30px;
-    gap: 10px;
-    display: flex;
-    flex-direction: column;
+.faq-item {
+  width: 100%;
+  margin-top: 30px;
+  gap: 10px;
+  display: flex;
+  flex-direction: column;
+}
 
-  }
+.help-icon {
+  width: 80px;
+  margin-bottom: 20px;
+}
 
+.help-card h1 {
+  font-size: 28px;
+  margin-bottom: 10px;
+  color: var(--text-color); /* Use text color variable */
+}
 
-  .help-icon {
-    width: 80px;
-    margin-bottom: 20px;
-  }
-  
-  .help-card h1 {
-    font-size: 28px;
-    margin-bottom: 10px;
-  }
-  
-  .help-card p {
-    font-size: 16px;
-    color: #555;
-  }
-  
-  .help-back-button {
-    margin-top: 20px;
-    padding: 10px 20px;
-    background-color: #8e44ad;
-    color: white;
-    border: none;
-    border-radius: 8px;
-    font-size: 14px;
-    cursor: pointer;
-  }
-  
-  .help-back-button:hover {
-    background-color: #6d2c91;
-  }
-  
+.help-card p {
+  font-size: 16px;
+  color: var(--text-color); /* Use text color variable with slight opacity for contrast */
+  opacity: 0.8; /* Mimics the lighter #555 in light mode */
+}
+
+.help-back-button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #8e44ad; /* Keep as is or define a variable */
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.help-back-button:hover {
+  background-color: #6d2c91;
+}

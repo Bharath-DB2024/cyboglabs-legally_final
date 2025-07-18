@@ -172,12 +172,14 @@ import "./App.css";
 import Online from "./components/pages/online.jsx";
 import Info from "./components/pages/info.jsx";
 import Help from "./components/pages/help.jsx";
-import Offline  from "./components/pages/offline.jsx";
+import Offline from "./components/pages/offline.jsx";
 import UploadDownload from "./components/pages/upload.jsx";
 import d from "./assets/dark.svg";
 import l from "./assets/light.svg";
 import off from "./assets/OFFLINE.svg";
 import on from "./assets/ONLINE.svg";
+import doff from "./assets/dof.svg";
+import don from "./assets/don.svg";
 import help from "./assets/help.svg";
 
 function App() {
@@ -200,10 +202,40 @@ function Main() {
 
   const currentPath = location.pathname;
 
+
+
+
+  // On first load, check localStorage
+  useEffect(() => {
+    const storedTheme = localStorage.getItem("theme");
+    if (storedTheme === "dark") {
+      setIsDark(true);
+      document.body.classList.add("dark-mode");
+    } else {
+      setIsDark(false);
+      document.body.classList.remove("dark-mode");
+    }
+  }, []);
+
+  // Handle toggle and persist to localStorage
+  const toggleTheme = () => {
+    const newTheme = !isDark;
+    setIsDark(newTheme);
+    localStorage.setItem("theme", newTheme ? "dark" : "light");
+
+    if (newTheme) {
+      document.body.classList.add("dark-mode");
+    } else {
+      document.body.classList.remove("dark-mode");
+    }
+  };
+
   useEffect(() => {
     // Persist current route
     localStorage.setItem("lastPage", currentPath);
   }, [currentPath]);
+
+
 
   useEffect(() => {
     // Redirect to last visited page on first load
@@ -219,9 +251,9 @@ function Main() {
         <div className="nav-left" onClick={handleBack}>CYBOGLABS.LEGAL</div>
         <div className="nav-right">
           {/* <a href="/info">Info</a> */}
-          <a href="/help"><img src={help} alt="home" className="helpi"/></a>
-          <dev className="toggle-button" onClick={() => setIsDark(!isDark)}>
-            {isDark ? <img src={l} alt="light"   className="dark1"/>: <img src={d} alt="Dark" className="dark1" />}
+          <a href="/help"><img src={help} alt="home" className="helpi" /></a>
+          <dev className="toggle-button" onClick={toggleTheme}>
+            {isDark ? <img src={l} alt="light" className="dark1" /> : <img src={d} alt="Dark" className="dark1" />}
           </dev >
         </div>
       </nav>
@@ -229,10 +261,10 @@ function Main() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/online" element={<Online />} />
-         <Route path="/offline" element={<Offline/>} />
+        <Route path="/offline" element={<Offline />} />
         {/* <Route path="/info" element={<Info />} /> */}
         <Route path="/help" element={<Help />} />
-        <Route path="/upload" element={<UploadDownload/>}/>
+        <Route path="/upload" element={<UploadDownload />} />
       </Routes>
 
       <footer className="footer">
@@ -245,22 +277,36 @@ function Main() {
 
 function Home() {
   const navigate = useNavigate();
+  const [isDark, setIsDark] = useState(false);
+  useEffect(() => {
+    const storedTheme = localStorage.getItem("theme");
+    setIsDark(storedTheme === "dark");
+
+  }, [
+
+  ]);
   return (
     <main className="container">
-        <div className="contain">
-      <div className="card" style={{ opacity: 0.8 }} onClick={() => navigate("/online")}>
-        <img src={on} className="homeicon"  alt="Document" />
-        <h2>Online NDA</h2>
-      </div>
-      <div className="card" style={{ opacity: 0.8 }} onClick={() => navigate("/offline")}>
-        <img src={off}  className="homeicon" alt="Document" />
-        <h2>Offline NDA</h2>
-      </div>
+      <div className="contain">
+        <div className="card" style={{ opacity: 0.8 }} onClick={() => navigate("/online")}>
 
-      <Card title="Corporate" />
-      <Card title="Independent Contractor Agreement" />
-      <Card title="Service Contract Agreement" />
-      <Card title="Rise Token Creation" />
+          {isDark ?
+            <img src={don} className="homeicon" alt="Document" /> : <img src={on} className="homeicon" alt="Document" />
+          }
+
+          <h2>Online NDA</h2>
+        </div>
+        <div className="card" style={{ opacity: 0.8 }} onClick={() => navigate("/offline")}>
+              {isDark ?
+            <img src={doff} className="homeicon" alt="Document" /> : <img src={off} className="homeicon" alt="Document" />
+          }
+          <h2>Offline NDA</h2>
+        </div>
+
+        <Card title="Corporate" />
+        <Card title="Independent Contractor Agreement" />
+        <Card title="Service Contract Agreement" />
+        <Card title="Rise Token Creation" />
       </div>
     </main>
   );
@@ -269,7 +315,7 @@ function Home() {
 function Card({ title }) {
   return (
     <div className="card" style={{ opacity: 0.3 }}>
-      <img src="https://img.icons8.com/ios-glyphs/64/communication.png"  className="homeicon" alt="Document" />
+      <img src="https://img.icons8.com/ios-glyphs/64/communication.png" className="homeicon" alt="Document" />
       <h2>{title}</h2>
     </div>
   );

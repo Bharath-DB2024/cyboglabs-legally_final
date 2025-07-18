@@ -8,6 +8,7 @@ import axios from "axios";
 import "../css/online.css";
 import NDAStyledLayout from "./nda";
 import a from "../../assets/a.svg";
+import close from "../../assets/close.svg";
 import Downlaod from "../../assets/a.svg";
 
 function Online() {
@@ -56,56 +57,60 @@ function Online() {
 
   // Initialize Leegality SDK
   const initLeegality = (signingUrl, id) => {
-    if (!window.Leegality || !isSdkLoaded) {
-      setMessage("Leegality SDK not loaded");
-      console.error("❌ Leegality SDK not loaded");
+  if (!window.Leegality || !isSdkLoaded) {
+    setMessage("Leegality SDK not loaded");
+    console.error("❌ Leegality SDK not loaded");
+    setIsLoading(false);
+    return;
+  }
+  console.log(signingUrl, id);
+
+  // Use closure to capture `id` properly
+  const callback = async (response) => {
+    if (response.error) {
+      setMessage(response.error);
+      console.error("❌ Signing error:", response);
+
+      await fetch("http://localhost:3000/api/signing-status", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          id: id, // use outer function `id`
+          status: "failed",
+          message: response.error,
+        }),
+      });
+    } else {
+      setMessage(response.message);
       setIsLoading(false);
-      return;
+      console.log("✅ Signing success:", response);
+
+      await fetch("http://localhost:3000/api/signing-status", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          id: id, // use outer function `id`
+          status: "success",
+          message: response.message,
+        }),
+      });
     }
-
-    const callback = async (response) => {
-      if (response.error) {
-        setMessage(response.error);
-        console.error("❌ Signing error:", response);
-        await fetch("http://localhost:3000/api/signing-status", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            id: id,
-            status: "failed",
-            message: response.error,
-          }),
-        });
-      } else {
-        setMessage(response.message);
-        setIsLoading(false);
-        console.log("✅ Signing success:", response);
-        await fetch("http://localhost:3000/api/signing-status", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            id: id,
-            status: "success",
-            message: response.message,
-          }),
-        });
-      }
-      setIsLoading(false);
-    };
-
-    const options = {
-      logoUrl: "",
-      callback,
-    };
-
-    const leegality = new window.Leegality(options);
-    leegality.init();
-    leegality.esign(signingUrl);
+    setIsLoading(false);
   };
+
+  const options = {
+    logoUrl: "",
+    callback,
+  };
+
+  const leegality = new window.Leegality(options);
+  leegality.init();
+  leegality.esign(signingUrl);
+};
 
   // Validate form inputs
   const validateForm = () => {
@@ -188,7 +193,7 @@ function Online() {
         <div className="main-header">
           <h1>Online NDA</h1>
           <button className="preview-btn" onClick={handlePreviewClick}>
-            NDA Preview
+           Preview
           </button>
         </div>
 
@@ -319,7 +324,7 @@ function Online() {
         <div className="pop">
           <div className="pdfpop">
             <div className="cl" onClick={closeModal}>
-              <p className="close-button">X</p>
+              <img src={close}  className="closeimg" alt="close" />
             </div>
             <NDAStyledLayout
               ref={ndaRef}

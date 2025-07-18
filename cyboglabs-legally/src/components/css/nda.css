@@ -1,23 +1,20 @@
 body, html, #root {
   margin: 0;
   padding: 0;
- 
-  font-family: Arial, sans-serif;
+  font-family: 'Inter', Arial, sans-serif; /* Updated to includemillimeter include Inter */
   height: 100vh;
+  background: var(--bg-color); /* Use background color variable */
+  color: var(--text-color); /* Use text color variable */
 }
-
-
 
 .nda-wrapper {
   height: 100%;
   min-width: 70%;
   max-width: 0%;
   margin: 0 auto;
-  box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
-
-  border-radius: 8px;
 }
-.nbody{
+
+.nbody {
   height: 80%;
   min-width: 100%;
   max-width: 0%;
@@ -25,7 +22,10 @@ body, html, #root {
   box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
   overflow-y: auto;
   border-radius: 8px;
+  background: var(--card-bg); /* Use card background variable */
+  color: var(--text-color); /* Use text color variable */
 }
+
 .nda-header {
   display: flex;
   width: 100%;
@@ -36,24 +36,24 @@ body, html, #root {
   padding: 10px 30px;
   border-top-right-radius: 10px;
   border-top-left-radius: 10px;
-  background-color: black;
-  color: white;
+  background-color: black; /* Use navbar background variable */
+  color: var(--navbar-text); /* Use navbar text color variable */
+
 }
 
 .nda-logo {
   height: 50px;
+}
 
-}
-.ht{
+.ht, .ht1 {
   font-size: 14px;
-}
-.ht1{
-  font-size: 14px;
+  color: var(--navbar-text); /* Use navbar text color variable */
 }
 
 .logo-sub {
   font-size: 12px;
   text-align: right;
+  color: var(--navbar-text); /* Use navbar text color variable */
 }
 
 .nda-content {
@@ -61,28 +61,41 @@ body, html, #root {
   padding: 10px 20px;
   height: 70%;
   overflow-y: auto;
+  box-shadow: -8px 0 8px -6px rgba(0, 0, 0, 0.1), 8px 0 8px -6px rgba(0, 0, 0, 0.1);
+  background: white; /* Use card background variable */
+  color: black; /* Use text color variable */
+
 }
-.het{
+.nda-content strong{
+  font-size: 12px;
+  font-weight: 600 !important;
+}
+
+.het {
   width: 100%;
   display: flex;
   flex-direction: row;
   align-items: center;
   gap: 10px;
 }
-.het img{
+
+.het img {
   width: 16px;
 }
+
 .nda-line {
   padding: 6px 12px;
-  color: black;
-  font-size: 13px !important;
+  color:black; /* Use text color variable */
+  font-size: 12px ;
+  font-weight: 100;
   border-left: 3px solid transparent;
   transition: background 0.3s, border-color 0.3s;
 }
 
 .highlight-read {
-  background-color: #e8f8f5;
+  background-color: #e8f8f5; /* Keep as is or define a variable */
   border-left: 3px solid yellow;
+  color: var(--speechtext-color);
   font-weight: bold;
 }
 
@@ -92,14 +105,14 @@ body, html, #root {
   margin-top: 30px;
   font-size: 13px;
   width: 80%;
-  padding:0px 15px ;
+  padding: 0px 15px;
   gap: 10px;
-  color: black;
-  
+  color: var(--text-color); /* Use text color variable */
 }
 
 .nda-signature-block h5 {
   margin-bottom: 10px;
+  color: var(--text-color); /* Use text color variable */
 }
 
 .nda-footer {
@@ -108,8 +121,8 @@ body, html, #root {
   padding: 10px 20px;
   width: 100%;
   height: 50px;
-  color: white;
-  background-color: black;
+  color: var(--nda-text); /* Use footer text color variable */
+  background-color: black; /* Use footer background variable */
   border-top: 5px solid transparent;
   border-image: linear-gradient(
     to right,
@@ -142,22 +155,27 @@ body, html, #root {
   background-color: #0056b3;
 }
 
-
-
-.speak-button:hover {
-  background-color: lightgrey;
-}
-
 .language-selector {
   padding: 10px 20px;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 90%;
+  width: 96%;
+  background-color: white;
+  z-index: 100000;
 }
-
+.lottietrans{
+  width:400px;
+  height: 200px;
+  object-fit: contain;
+}
 .translating-message {
-  color: #007bff;
+  color: #007bff; /* Keep as is or define a variable */
   font-size: 14px;
 }
 
-/* Style for the scroll down button */
 .scroll-down-button {
   position: sticky;
   bottom: 10px;
@@ -187,115 +205,111 @@ body, html, #root {
   margin-top: 20px;
 }
 
-.next-btn {
-
+.next-btn, .next-btn1 {
   color: white;
-  padding: 10px 14px;
   border: none;
   border-radius: 5px;
   display: inline-flex;
   align-items: center;
-  gap: 8px;
   cursor: pointer;
-}
-.next-btn1 {
 
-  color: white;
-  padding: 10px 14px;
-  border: none;
-  border-radius: 5px;
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  cursor: pointer;
 }
-.leftimg , .rightimg{
+.next-btn:active,.next-btn1:active{
+  transform: scale(0.95);
+}
+
+
+.leftimg, .rightimg {
   height: 40px;
-    transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
 }
-.leftimg:hover{
-   scale: 1.1;
+
+.leftimg:hover {
+  scale: 1.1;
+  background-color: var(--card-bg); /* Use card background for hover */
+  border-radius: 30px;
 }
-.rightimg:hover{
-   scale: 1.1;
-}
-.languge{
+
+.languge {
   width: 30%;
   height: 50px;
- 
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  gap:10px
-
+  gap: 10px;
 }
-.speak-button{
-  width: 10%;
-  height:40px;
+
+.speak-button {
+  width: 35px;
+  height: 35px;
   display: flex;
   align-items: center;
   justify-content: center;
   color: white;
-  padding: 10px 20px;
   border: none;
-  border-radius: 4px;
+  border-radius: 10px;
   cursor: pointer;
-  
+  background-color: #007bff;
 }
-.sign p{
+
+.speak-button:hover {
+  background-color: var(--card-bg); /* Use card background for hover */
+}
+
+.spki {
+  object-fit: contain;
+}
+
+.sign p {
   font-size: 13px;
   font-weight: 400;
-  color: black;
-
+  color: var(--text-color); /* Use text color variable */
 }
-.sub{
+
+.sub {
   width: 95%;
-
-
   display: flex;
   align-items: center;
   justify-content: flex-end;
 }
-.sing{
 
+.sing {
   height: 60px;
   display: flex;
   flex-direction: row;
   align-items: center;
- 
 }
-.sing img{
+
+.sing img {
   width: 90px;
   height: 40px;
   object-fit: contain;
-
 }
-.signp{
+
+.signp {
   width: 100%;
   display: flex;
   flex-direction: row;
   align-items: center;
   gap: 10px;
-
-
 }
 
-.text{
+.text {
   width: 80%;
-
 }
-.la{
+
+.la {
   width: 50%;
 }
-.info-display {
 
-  font-family: Arial, sans-serif;
+.info-display {
+  font-family: 'Inter', Arial, sans-serif; /* Updated to include Inter */
   font-size: 12px;
   line-height: 1.8;
   margin: 20px auto;
   padding: 1px;
-
+  color: var(--text-color); /* Use text color variable */
 }
 
 .info-row {
@@ -304,8 +318,8 @@ body, html, #root {
 }
 
 .label {
-
   font-weight: bold;
+  color: var(--text-color); /* Use text color variable */
 }
 
 .colon {
@@ -314,4 +328,27 @@ body, html, #root {
 
 .value {
   flex: 1;
+  color: var(--text-color); /* Use text color variable */
+}
+.language-select{ 
+  width: 120px;
+  padding: 8px 12px;
+  font-size: 14px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  background-color: #fff;
+  color: #333;
+  cursor: pointer;
+  margin-right: 10px;
+
+  /* Remove default arrow (for <select>) */
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+
+  /* Custom arrow image */
+  background-image: url("/arrow.svg");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 16px;
 }
