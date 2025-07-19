@@ -170,7 +170,7 @@ useEffect(() => {
         console.error("Translation error:", error);
         setTranslatedLines(ndaTranslations["en-US"]);
       } finally {
-        setIsTranslating(true);
+        setIsTranslating(false);
       }
     };
 
@@ -344,7 +344,7 @@ useEffect(() => {
         </div>
       </div>
 }
-      <div style={{ display: "flex", justifyContent: "flex-end", alignItems: "center", marginBottom: "10px" }}>
+      <div className="sl">
         <div className="languge">
 
           <div
@@ -417,10 +417,10 @@ className="language-select"
               <div className="sign">
                 <h5>CYBOGLABS PRIVATE LIMITED</h5>
               <div className="sing">  <p>Signature:</p>
-              <img src={sign} alt="sign" />
+              <img src={sign} alt="sign"  />
               </div>
                <div className="signp">
-                <p>Date</p>   <p>:{formData.fromDate ? formData.fromDate:"_______________"}</p>
+                <p>Date</p>   <p>:{formData.fromDate ? formData.fromDate:"___________"}</p>
                 </div>
             
               </div>
@@ -428,16 +428,16 @@ className="language-select"
                 <h5>RECEIVING PARTY</h5>
                 <div className="signp">
 
-                <p className="la">Name </p>    <p className="text">:{formData.fullName ? formData.fullName:"_______________"}</p>
+                <p className="la">Name </p>    <p className="text">:{formData.fullName ? formData.fullName:"____________"}</p>
                 </div>
                  <div className="signp">
-                <p>Designation</p><p>:{formData.role ? formData.role:"_______________"}</p>
+                <p>Designation</p><p>:{formData.role ? formData.role:"_________"}</p>
                 </div>
                      <div className="signp">
                 <p>Signature</p><p>:</p>
                 </div>
           <div className="signp">
-                <p>Date</p> <p> :{formData.fromDate ? formData.fromDate:"_______________"}</p>
+                <p>Date</p> <p> :{formData.fromDate ? formData.fromDate:"__________"}</p>
                 </div>
               
               </div>
